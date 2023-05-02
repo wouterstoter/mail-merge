@@ -37,4 +37,30 @@ Certain variables names have special properties, since they won't only be used i
 
 At least one of the variables *recipient*, *cc* or *bcc* needs to be defined for the mail merge to work.
 
+An example of a spreadsheet could be like the one below:
+| recipient         | name | favoriteColor | birthday   |
+|-------------------|------|---------------|------------|
+| joe@example.com   | Joe  | Purple        | 2000-01-01 |
+| anna@example.com  | Anna | Yellow        | 1990-12-31 |
+
 ## Write email
+To write the email you can simply create an email draft in GMail. To insert variables we use [Google App Script Scriptlets](https://developers.google.com/apps-script/guides/html/templates). For a variable print, you can use the syntax `<?= variableName ?>`. These scriptlets can be used in your email body and in the subject line. In your email you can use any text formatting GMail offers, however, the full scriptlet needs to fully have the same formatting, otherwise you might get errors.
+```
+Dear <?= name ?>,
+
+Hereby I'd like to inform you that your favorite colour is <?= Purple ?>.
+
+Kind regards,
+Me
+```
+
+### Text transformation
+You can also use Google App Script functions (which mostly correspond to JavaScript functions) to transform your text. All variables are saved as strings, the way they are displayed in the spreadsheet. If your data has a different data type, for example a number, date or boolean, you can access the raw variable by putting an underscore (`_`) at the beginning of the variable name.
+```
+Dear <?= name.toUpperCase() ?>,
+
+Your name starts with the letter <?= name.slice(0,1) ?>, and you were born in <?= _birthday.getFullYear() ?>.
+
+Kind regards,
+Me
+```

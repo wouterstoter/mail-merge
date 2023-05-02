@@ -8,5 +8,5 @@ The easiest way to setup the system is by copying [this spreadsheet](https://doc
 
 ## Authorization
 The first time you use the script in a new document you need to authorize the script. This gives it permission to do the things in your Google Account it needs to do. The first time you try to use any of the options, you'll get a popup, telling you to authorize it.
-![alt text](https://github.com/wouterstoter/mail-merge/blob/main/images/Authorization Required.png?raw=true)
+![Popup with the text 'Authorisation Required - A script attached to this document needs your permission to run' and the options 'Continue' and 'Cancel'](https://github.com/wouterstoter/mail-merge/raw/main/images/Authorization%20Required.png)
 Click 'Continue' and a popup will appear telling you to pick your account.

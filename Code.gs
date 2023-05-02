@@ -96,7 +96,7 @@ function fillTemplates() {
     d.options.htmlBody = evaluateHTML(d.options.htmlBody,a)
     d.recipient = a.recipient || d.recipient;
     for (o in d.options) {
-      if (o != "htmlBody") d.options[o] = a[o] || d.options[o];
+      if (o != "htmlBody") d.options[o] = a["_"+o] || a[o] || d.options[o];
     }
     return d;
   })

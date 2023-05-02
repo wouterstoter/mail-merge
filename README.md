@@ -4,7 +4,7 @@ Create mass emails using GMail, Google Sheets and Google App Script, with variab
 ## Use case
 
 ## Setup
-The easiest way to setup the system is by copying [this spreadsheet](https://docs.google.com/spreadsheets/d/1boihzJ4OGOHytMMEi9k6nDC4EFIOD96UzFYxVGtGuPc/copy). If you do not want to do that, you can also create an empty spreadsheet and click 'Extensions > App Script'. Now you can copy the contents of the file [Code.gs](Code.gs) into the script, and you're ready to go.
+The easiest way to setup the system is by copying [this spreadsheet](https://docs.google.com/spreadsheets/d/1boihzJ4OGOHytMMEi9k6nDC4EFIOD96UzFYxVGtGuPc/copy). If you do not want to do that, you can also create an empty spreadsheet or open an existing one and click 'Extensions > App Script'. Now you can copy the contents of the file [Code.gs](Code.gs) into the script, and you're ready to go.
 
 ## Authorization
 The first time you use the script in a new document you need to authorize the script. This gives it permission to do the things in your Google Account it needs to do. The first time you try to use any of the options, you'll get a popup, telling you to authorize it.
@@ -23,3 +23,18 @@ After this, you'll get a list of authorizations the app needs:
 * Display and run third-party web content in prompts and sidebars inside Google applications
 
 These are required for the app to work. To use the app, click 'Allow'. Now you're able to use the app. Be aware, the action you tried to perform before authorizing will not be performed, you need to do it again.
+
+## Create Spreadsheet
+The first sheet in your spreadsheet will be used as the data for your Mail Merge. Every row in this spreadsheet is a seperate email and every column is a variable. The first row of the sheet will be used as variable names. The variable names need to follow [JS Variable Naming Rules](https://developer.mozilla.org/en-US/docs/Learn/JavaScript/First_steps/Variables#an_aside_on_variable_naming_rules), with means you cannot use spaces in your variable name. Keep in mind that variable names are case sensitive.
+
+Certain variables names have special properties, since they won't only be used in your email, but also will be used to set for example the receipients of your email. The following variables are special variables:
+* **recipient** The addresses of the recipients, separated by commas
+* **cc** A comma-separated list of email addresses to CC
+* **bcc** A comma-separated list of email addresses to BCC
+* **name** The name of the sender of the email (default: the user's name)
+* **noReply** TRUE if the email should be sent from a generic no-reply email address to discourage recipients from responding to emails; this option is only possible for Google Workspace accounts, not Gmail users
+* **replyTo** An email address to use as the default reply-to address (default: the user's email address)
+
+At least one of the variables *recipient*, *cc* or *bcc* needs to be defined for the mail merge to work.
+
+## Write email
